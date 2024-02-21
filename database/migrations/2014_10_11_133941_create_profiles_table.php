@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('headline');
             $table->string('location');
             $table->foreignId('education_id')->constrained('educations')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('experience_id')->constrained('expeiences')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('experience_id')->constrained('experiences')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('industry_id')->constrained('industry')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
