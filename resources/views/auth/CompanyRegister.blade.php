@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="fullname" class="col-md-4 col-form-label text-md-end">{{ __('fullname') }}</label>
+                            <label for="fullname" class="col-md-4 col-form-label text-md-end">{{ __(' Representative fullname') }}</label>
                             <div class="col-md-6">
                                 <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" required autocomplete="representative Full Name" autofocus>
                                 @error('fullname')
@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="domain" class="col-md-4 col-form-label text-md-end">{{ __('domain') }}</label>
+                            <label for="domaine" class="col-md-4 col-form-label text-md-end">{{ __('domaine') }}</label>
                             <div class="col-md-6">
-                                <input id="domain" type="text" class="form-control @error('domain') is-invalid @enderror" name="domain" value="{{ old('domain') }}" required autocomplete="company Domain">
-                                @error('domain')
+                                <input id="domaine" type="text" class="form-control @error('domaine') is-invalid @enderror" name="domaine" value="{{ old('domaine') }}" required autocomplete="company Domaine">
+                                @error('domaine')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
