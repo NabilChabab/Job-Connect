@@ -43,9 +43,15 @@
                                 </li>
                             @endif
 
+
                             
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/getStarted') }}">{{ __('Register') }}</a>
+
+
+                            @if (Route::has('register.index'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register.index') }}">{{ __('Register') }}</a>
+
                                 </li>
                            
                         @else
