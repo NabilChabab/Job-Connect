@@ -28,7 +28,7 @@ class Company extends Model
         'description',
         'domaine',
         'location',
-        'start_date',
+        'founded_date',
     ];
     
 }

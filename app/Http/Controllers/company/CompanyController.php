@@ -35,15 +35,15 @@ class CompanyController extends Controller
     {
         //
          $data = $request->validate([
-            'name' => "required",
-            'description' => "required",
+            'company_name' => "required",
+            'company_email' => "required",
             'domaine' => "required",
             'location' => "required",
-            'start_date' => "required",
+            'founded_date' => "required",
         ]);
 
         $company=Company::create($data);
-        return redirect()->route("company",['company' => $company]);
+        return redirect()->route('company.index');
     }
 
     /**
