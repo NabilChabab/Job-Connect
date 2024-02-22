@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->roles->contains('name', $role);
     }
+
+    public function representative()
+    {
+        return $this->hasOne(Representative::class);
+    }
 }

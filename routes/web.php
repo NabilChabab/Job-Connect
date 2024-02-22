@@ -24,5 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('register', UserRegisterController::class);
 
+//company
+// Route::resource('company',[App\Http\Controllers\company\CompanyController::class]);
 
 
