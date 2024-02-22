@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserRegisterController extends Controller
 {
@@ -12,7 +14,7 @@ class UserRegisterController extends Controller
      */
     public function index()
     {
-        return view('auth.register');
+        return view('auth.UserRegister');
     }
 
     /**
@@ -28,7 +30,18 @@ class UserRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'fullname' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password'
+        ]);
+        $data = $request->except('password_confirmation', 'password');
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+        $user->roles()->attach([2]);
+        return redirect(route('login'));
+        
     }
 
     /**

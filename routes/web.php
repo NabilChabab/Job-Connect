@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('register', UserRegisterController::class);
+Route::resource('companyRegister',CompanyRegisterController::class);
+Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index']);

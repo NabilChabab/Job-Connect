@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyRegisterController extends Controller
 {
@@ -12,7 +14,7 @@ class CompanyRegisterController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.CompanyRegister');
     }
 
     /**
@@ -27,9 +29,12 @@ class CompanyRegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+  
+    
+}
+
+    
 
     /**
      * Display the specified resource.
