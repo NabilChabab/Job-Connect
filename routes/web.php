@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//authentication
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('register', UserRegisterController::class);
-
 Route::resource('companyRegister',CompanyRegisterController::class);
 Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index']);
+
+//userProfile
+
+Route::resource('profile',ProfileController::class);
 
 
 //company
