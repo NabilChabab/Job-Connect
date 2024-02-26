@@ -22,5 +22,6 @@ class JobOffre extends Model
         'salary',
         'n_experiences',
         'content',
+        'companie_id'
     ];
 }

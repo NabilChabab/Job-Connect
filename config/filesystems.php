@@ -36,6 +36,36 @@ return [
             'throw' => false,
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media',
+        ],
+
+        'media_users' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media/users',
+        ],
+
+        'media_offres' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media/offres',
+        ],
+
+        'media_companies' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media/companies',
+        ],
+
+        'media_posts' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media/companies/posts',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

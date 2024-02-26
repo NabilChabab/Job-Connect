@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="#">
+          <a class="nav-link  " href="{{route('companies.index')}}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -77,7 +77,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="{{route('companies.index')}}">
+          <a class="nav-link  active" href="#">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -118,6 +118,9 @@
           </a>
         </li>
 
+      </ul>
+    </div>
+
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
@@ -142,13 +145,9 @@
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online Builder</a>
             </li>
             <li class="nav-item d-flex align-items-center">
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-                <a href="{{route('logout')}}" class="nav-link text-dark font-weight-bold px-0" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
+              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign out</span>
+                <span class="d-sm-inline d-none">Sign In</span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -242,40 +241,8 @@
         </div>
       </div>
     </nav>
-
-
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-        <div class="row mb-5">
-            @foreach ($users as $user)
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                  <div class="card-body p-3">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="numbers">
-                          <p class="text-sm mb-0 text-capitalize font-weight-bold"> {{$user->email}} </p>
-                          <h5 class="font-weight-bolder mb-0">
-                            {{$user->fullname}}
-                          </h5>
-                          <h5 class="font-weight-bolder mb-0">
-                            @foreach ($user->roles as $role)
-                                    <span class="text-success text-sm font-weight-bolder">{{$role->name}}</span>
-                            @endforeach
-                          </h5>
-                        </div>
-                      </div>
-                      <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                          <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
