@@ -56,7 +56,7 @@ Route::prefix('company')->group(function () {
 
 
 //company
-// Route::resource('company',[App\Http\Controllers\company\CompanyController::class]);
+Route::resource('company',CompanyController::class);
 
 
 
