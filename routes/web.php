@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('register', UserRegisterController::class);
 
 Route::resource('companyRegister',CompanyRegisterController::class);
-Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index']);
+Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index'])->name('getStarted');
 
 
 //company
