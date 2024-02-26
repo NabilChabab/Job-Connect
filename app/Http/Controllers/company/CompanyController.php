@@ -16,7 +16,7 @@ class CompanyController extends Controller
     {
         //
 
-        return view('company.index');
+        return view('company.dashboard');
     }
 
     /**
@@ -90,6 +90,6 @@ class CompanyController extends Controller
     {
         //
         $company->delete();
-        return redirect(route("company"))->with('success', "company successfully deleted"); 
+        return redirect(route("company"))->with('success', "company successfully deleted");
     }
 }
