@@ -16,7 +16,7 @@ class CompanyController extends Controller
     {
         //
 
-        return view('company.index');
+        return view('company.dashboard');
     }
 
     /**

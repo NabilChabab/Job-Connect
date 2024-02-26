@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\company\CompanyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'ind
 
 
 //company
-// Route::resource('company',[App\Http\Controllers\company\CompanyController::class]);
+Route::resource('company',CompanyController::class);
 
 
 
