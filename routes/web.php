@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CompanyController;
+use App\Http\Controllers\admin\OffreController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\company\CompanyController as CompanyCompanyController;
 use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,9 +34,25 @@ Route::resource('register', UserRegisterController::class);
 Route::resource('companyRegister',CompanyRegisterController::class);
 Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index']);
 
-//userProfile
+//users
+Route::prefix('user')->group(function(){
+    Route::resource('profile',ProfileController::class);
 
-Route::resource('profile',ProfileController::class);
+});
+
+//admin
+Route::prefix('admin')->group(function () {
+    Route::resource('dashboard', AdminController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('companies', CompanyController::class);
+    Route::resource('offres' , OffreController::class);
+});
+
+Route::prefix('company')->group(function () {
+    Route::resource('home', CompanyCompanyController::class);
+
+});
+
 
 
 //company
