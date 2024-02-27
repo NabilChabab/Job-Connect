@@ -44,25 +44,25 @@ return [
 
         'media_users' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/users'),
             'url'    => env('APP_URL').'/media/users',
         ],
 
         'media_offres' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/offres'),
             'url'    => env('APP_URL').'/media/offres',
         ],
 
         'media_companies' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/companies'),
             'url'    => env('APP_URL').'/media/companies',
         ],
 
         'media_posts' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/posts'),
             'url'    => env('APP_URL').'/media/companies/posts',
         ],
 
