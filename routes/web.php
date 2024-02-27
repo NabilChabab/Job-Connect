@@ -7,6 +7,9 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\company\CompanyController as CompanyCompanyController;
+use App\Http\Controllers\admin\IndustryController;
+use App\Http\Controllers\user\education\EducationController;
+use App\Http\Controllers\user\experience\ExperienceController;
 use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +40,9 @@ Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'ind
 //users
 Route::prefix('user')->group(function(){
     Route::resource('profile',ProfileController::class);
+    Route::resource('education',EducationController::class);
+    Route::resource('experience',ExperienceController::class);
+
 
 });
 
