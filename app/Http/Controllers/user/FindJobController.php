@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobOffre;
 use Illuminate\Http\Request;
 
 class FindJobController extends Controller
@@ -12,7 +13,10 @@ class FindJobController extends Controller
      */
     public function index()
     {
-        return view('users.findjob');
+        $jobOffres = JobOffre::with('company')->get();
+        foreach ($jobOffres as $jobOffre) {
+            return view('users.findjob', compact('jobOffres'));
+        }
     }
 
     /**

@@ -20,19 +20,19 @@
         </div>
 
         <div class="form-group">
-            <label for="content">Content (Image/File):</label>
-            <input type="file" class="form-control-file" id="content" name="content">
+            <label for="logo">Logo (Image/File):</label>
+            <input type="file" class="form-control-file" id="image" name="image">
         </div>
 
         <div class="form-group">
             <label for="contract">Contract:</label>
-            <textarea class="form-control" id="contract" name="contracte" rows="3" required></textarea>
+            <input class="form-control" id="contract" name="contracte" required>
         </div>
-{{-- 'title' => "required",
-           'contracte' => "required",
-            'salary' => "required",
-            'n_experiences' => "required",
-            'content' => "required", --}}
+
+        <div class="form-group">
+            <label for="contract">Content:</label>
+            <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+        </div>
         <div class="form-group">
             <label for="salary">Salary:</label>
             <input type="number" class="form-control" id="salary" name="salary" step="0.01" required>

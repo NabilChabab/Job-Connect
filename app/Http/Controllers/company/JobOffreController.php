@@ -19,6 +19,7 @@ class JobOffreController extends Controller
         // $company = Auth::user()->representative->company; ['company' => $company]
         $jobOffres = JobOffre::all();
         return view('job_offres.index',compact('jobOffres'));
+        
     }
 
     /**
@@ -54,7 +55,7 @@ class JobOffreController extends Controller
         $skills = $request->input('skills');
         $jobOffre->skill()->sync($skills);
         if ($request->hasFile('image')) {
-            $jobOffre->addMediaFromRequest('content')->toMediaCollection('media/offres','media_offres');
+            $jobOffre->addMediaFromRequest('image')->toMediaCollection('media/offres','media_offres');
         }
         return redirect()->route('job_offres.index');
     }
@@ -92,7 +93,7 @@ class JobOffreController extends Controller
             'salary' => "required",
             'n_experiences' => "required",
             'content' => "required",
-            // 'companie_id'=>$id,
+            
         ]);
 
         
@@ -100,8 +101,9 @@ class JobOffreController extends Controller
         $jobOffre->update($data);
         $skills = $request->input('skills');
         $jobOffre->skill()->sync($skills);
+
         if ($request->hasFile('image')) {
-            $jobOffre->addMediaFromRequest('content')->toMediaCollection('media/offres','media_offres');
+            $jobOffre->addMediaFromRequest('image')->toMediaCollection('media/offres','media_offres');
         }
         return redirect(route("job_offres"))->with('success', "jobOffre successfully updated");
     }

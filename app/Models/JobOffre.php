@@ -11,7 +11,7 @@ class JobOffre extends Model implements HasMedia
 {
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'companie_id', 'id');
     }
     public function skill()
     {
