@@ -118,7 +118,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/tables.html">
+          <a class="nav-link  " href="{{route('jobsearch.index')}}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -143,7 +143,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link  active" href="../pages/profile.html">
+          <a class="nav-link  active" href="#">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -595,28 +595,19 @@
               </div>
             </div>
             <div class="card-body p-3">
-              <p class="text-sm">
-                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
-              </p>
-              <hr class="horizontal gray-light my-4">
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
-                <li class="list-group-item border-0 ps-0 pb-0">
-                  <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                  <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                    <i class="fab fa-facebook fa-lg"></i>
-                  </a>
-                  <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                    <i class="fab fa-twitter fa-lg"></i>
-                  </a>
-                  <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                    <i class="fab fa-instagram fa-lg"></i>
-                  </a>
-                </li>
-              </ul>
+                <ul class="list-group">
+                    @foreach ($user_skills as $skill)
+
+                    <li class="list-group-item border-0 px-0">
+                      <p class="text-xs"> </p>
+                        <div class="form-check form-switch ps-0 d-flex justify-content-center align-items-center">
+                            <i class='bx bxl-sketch' ></i>
+                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">{{$skill->name}}</label>
+                        </div>
+                    </li>
+                    @endforeach
+
+                  </ul>
             </div>
           </div>
         </div>
@@ -629,19 +620,16 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form id="editProfileForm" enctype="multipart/form-data" action="{{route('experience.store')}}" method="POST">
+                  <form id="editProfileForm" enctype="multipart/form-data" action="{{route('skills.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                       <label for="name" class="form-label">Skills</label>
                       <select name="name" id="name" class="form-control">
                         <option selected>Select Your Skills</option>
                         @foreach ($skills as $skill)
-                            <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                            <option value="{{ $skill->name }}">{{ $skill->name }}</option>
                         @endforeach
                     </select>
-
-
-
                     </div>
                     <!-- Add more fields as needed -->
                     <button type="submit" class="btn btn-primary" name="submit">Save Changes</button>

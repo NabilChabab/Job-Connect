@@ -13,7 +13,12 @@ class Skill extends Model
     {
         return $this->hasMany(JobOffre::class);
     }
-    
+
+    public function profile()
+    {
+        return $this->belongsToMany(Profiles::class , 'profile_skill', 'skill_id', 'profile_id');
+    }
+
     protected $fillable = [
         'name',
     ];

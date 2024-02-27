@@ -17,6 +17,7 @@ use App\Http\Controllers\user\education\EducationController;
 use App\Http\Controllers\user\experience\ExperienceController;
 
 use App\Http\Controllers\user\ProfileController;
+use App\Http\Controllers\user\skills\SkillsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,7 @@ Route::prefix('user')->group(function(){
 
     Route::resource('education',EducationController::class);
     Route::resource('experience',ExperienceController::class);
+    Route::resource('skills',SkillsController::class);
 
 
 

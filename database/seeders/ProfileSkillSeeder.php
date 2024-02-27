@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Profiles;
+use App\Models\Skill;
 use App\Models\Skills;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,7 @@ class ProfileSkillSeeder extends Seeder
     // Ensure the profile exists
     if ($profile) {
         // Get all skills
-        $skills = Skills::all();
+        $skills = Skill::all();
 
         // Check if there are skills available
         if ($skills->count() > 0) {

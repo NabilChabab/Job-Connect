@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Skills;
+use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Skills>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Skill>
  */
 class SkillsFactory extends Factory
 {
@@ -16,7 +16,7 @@ class SkillsFactory extends Factory
      * @return array<string, mixed>
      */
 
-     protected $model = Skills::class;
+     protected $model = Skill::class;
     public function definition(): array
     {
         return [
