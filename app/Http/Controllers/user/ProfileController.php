@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Skills;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -12,8 +14,15 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('users.profile');
+     // Check if profile exists, otherwise default to an empty array
+     $user = Auth::user(); // Get the authenticated user
+
+     $educations = $user->profile->education->get();
+     $experiences = $user->profile->experience->get();
+     $skills = Skills::all();
+    return view('users.profile',compact('educations' , 'experiences' , 'skills'));
     }
+
 
     /**
      * Show the form for creating a new resource.

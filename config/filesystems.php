@@ -44,7 +44,7 @@ return [
 
         'media_users' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/users'),
             'url'    => env('APP_URL').'/media/users',
         ],
 
@@ -62,7 +62,7 @@ return [
 
         'media_posts' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/posts'),
             'url'    => env('APP_URL').'/media/companies/posts',
         ],
 
