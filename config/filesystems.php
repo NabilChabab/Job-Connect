@@ -50,13 +50,13 @@ return [
 
         'media_offres' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/offres'),
             'url'    => env('APP_URL').'/media/offres',
         ],
 
         'media_companies' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => public_path('media/companies'),
             'url'    => env('APP_URL').'/media/companies',
         ],
 

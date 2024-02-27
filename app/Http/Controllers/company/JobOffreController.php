@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobOffre;
+use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobOffreController extends Controller
 {
@@ -14,9 +16,9 @@ class JobOffreController extends Controller
      */
     public function index()
     {
-        //
-
-        return view('jobOffres.index');
+        // $company = Auth::user()->representative->company; ['company' => $company]
+        $jobOffres = JobOffre::all();
+        return view('job_offres.index',compact('jobOffres'));
     }
 
     /**
@@ -25,7 +27,8 @@ class JobOffreController extends Controller
     public function create()
     {
         //
-        return view('jobOffre.create');
+        $skills =Skill::all();
+        return view('job_offres.create',compact('skills'));
     }
 
     /**
@@ -34,16 +37,26 @@ class JobOffreController extends Controller
     public function store(Request $request)
     {
         //
+        $id = Auth::user()->representative->company->id ;
+        //dd($id);
          $data = $request->validate([
             'title' => "required",
-            //'contracte' => "required",
-            //'salary' => "required",
+           'contracte' => "required",
+            'salary' => "required",
             'n_experiences' => "required",
             'content' => "required",
+            // 'companie_id'=>$id,
         ]);
 
+        
+        $data['companie_id'] = $id;
         $jobOffre=JobOffre::create($data);
-        return redirect()->route('jobOffre.index');
+        $skills = $request->input('skills');
+        $jobOffre->skill()->sync($skills);
+        if ($request->hasFile('image')) {
+            $jobOffre->addMediaFromRequest('content')->toMediaCollection('media/offres','media_offres');
+        }
+        return redirect()->route('job_offres.index');
     }
 
     /**
@@ -52,7 +65,7 @@ class JobOffreController extends Controller
     public function show(JobOffre $jobOffre)
     {
         //
-        return view('jobOffre.show',['jobOffre' => $jobOffre]);
+        return view('job_offres.show',['jobOffre' => $jobOffre]);
 
     }
 
@@ -62,7 +75,7 @@ class JobOffreController extends Controller
     public function edit(JobOffre $jobOffre)
     {
         //
-        return view('jobOffre.edit', ['jobOffre' => $jobOffre]);
+        return view('job_offres.edit', ['jobOffre' => $jobOffre]);
     }
 
     /**
@@ -71,16 +84,26 @@ class JobOffreController extends Controller
     public function update(JobOffre $jobOffre, Request $request)
     {
         //
-        $data = $request->validate([
+        $id = Auth::user()->representative->company->id ;
+        //dd($id);
+         $data = $request->validate([
             'title' => "required",
-            //'contracte' => "required",
-            //'salary' => "required",
+           'contracte' => "required",
+            'salary' => "required",
             'n_experiences' => "required",
             'content' => "required",
+            // 'companie_id'=>$id,
         ]);
 
+        
+        $data['companie_id'] = $id;
         $jobOffre->update($data);
-        return redirect(route("jobOffre"))->with('success', "jobOffre successfully updated");
+        $skills = $request->input('skills');
+        $jobOffre->skill()->sync($skills);
+        if ($request->hasFile('image')) {
+            $jobOffre->addMediaFromRequest('content')->toMediaCollection('media/offres','media_offres');
+        }
+        return redirect(route("job_offres"))->with('success', "jobOffre successfully updated");
     }
 
     /**

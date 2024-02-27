@@ -7,6 +7,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\company\CompanyController as CompanyCompanyController;
+use App\Http\Controllers\company\CompanyProfileController;
+use App\Http\Controllers\company\JobOffreController;
 use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,13 +52,19 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('company')->group(function () {
     Route::resource('home', CompanyCompanyController::class);
-
+    Route::resource('companyprofile',CompanyProfileController::class);
+    Route::resource('job_offres', JobOffreController::class);
 });
+
+// Route::prefix('jobOffre')->group(function () {
+//     Route::resource('home', CompanyCompanyController::class);
+//     Route::resource('companyprofile',CompanyProfileController::class);
+// });
 
 
 
 //company
-Route::resource('company',CompanyController::class);
+// Route::resource('company',CompanyController::class);
 
 
 

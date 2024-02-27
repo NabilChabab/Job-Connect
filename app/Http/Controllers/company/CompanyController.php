@@ -43,6 +43,9 @@ class CompanyController extends Controller
         ]);
 
         $company=Company::create($data);
+        if ($request->hasFile('image')) {
+            $company->addMediaFromRequest('image')->toMediaCollection('media/companies','media_companies');
+        }
         return redirect()->route('company.index');
     }
 
@@ -80,6 +83,9 @@ class CompanyController extends Controller
         ]);
 
         $company->update($data);
+        if ($request->hasFile('image')) {
+            $company->addMediaFromRequest('image')->toMediaCollection('media/companies','media_companies');
+        }
         return redirect(route("company"))->with('success', "company successfully updated");
     }
 
