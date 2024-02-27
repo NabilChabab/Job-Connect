@@ -7,10 +7,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\company\CompanyController as CompanyCompanyController;
-<<<<<<< HEAD
 use App\Http\Controllers\company\CompanyProfileController;
 use App\Http\Controllers\company\JobOffreController;
-=======
 
 use App\Http\Controllers\user\FindJobController;
 
@@ -18,7 +16,6 @@ use App\Http\Controllers\admin\IndustryController;
 use App\Http\Controllers\user\education\EducationController;
 use App\Http\Controllers\user\experience\ExperienceController;
 
->>>>>>> 249aa050b9e2c4682459d0d65f02806fdfb8d741
 use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

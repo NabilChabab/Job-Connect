@@ -39,10 +39,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 249aa050b9e2c4682459d0d65f02806fdfb8d741
+
 
     public function authenticated(Request $request, $user)
     {
@@ -61,8 +59,5 @@ class LoginController extends Controller
             return redirect($this->redirectTo);
         }
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 249aa050b9e2c4682459d0d65f02806fdfb8d741
 }
