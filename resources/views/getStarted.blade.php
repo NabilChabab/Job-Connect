@@ -85,4 +85,3 @@
         <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     </main>
 </div>
-@endsection
