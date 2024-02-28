@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('headline');
-            $table->string('location');
+            $table->string('headline')->nullable();
+            $table->string('location')->nullable();
             $table->foreignId('education_id')->constrained('educations')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('experience_id')->constrained('experiences')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('industry_id')->constrained('industry')->onDelete('cascade')->onUpdate('cascade');
