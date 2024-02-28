@@ -1,30 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\user\skills;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
-use App\Models\Skills;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class SkillsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-     // Check if profile exists, otherwise default to an empty array
-     $user = Auth::user(); // Get the authenticated user
-
-     $educations = $user->profile->education()->get();
-     $experiences = $user->profile->experience()->get();
-     $skills = Skill::all();
-     $user_skills = $user->profile->skills->all();
-    return view('users.profile',compact('educations' , 'experiences' , 'skills' , 'user_skills'));
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +30,14 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $skill = Skill::create($request->all());
+        Auth::user()->profile->skills()->attach($skill);
+
+        return redirect()->back()->with('status', 'Skill created successfully.');
     }
 
     /**

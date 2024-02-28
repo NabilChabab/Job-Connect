@@ -45,117 +45,45 @@
                         <!-- single one -->
                         <div class="single-listing">
                            <div class="small-section-tittle2">
-                                 <h4>Job Category</h4>
+                                 <h4>Job Domaine</h4>
                            </div>
                             <!-- Select job items start -->
                             <div class="select-job-items2">
-                                <select name="select">
-                                    <option value="">All Category</option>
-                                    <option value="">Category 1</option>
-                                    <option value="">Category 2</option>
-                                    <option value="">Category 3</option>
-                                    <option value="">Category 4</option>
+                                <select name="select" id="domaineSelect" onchange="search()">
+                                    <option value="">All Domaines</option>
+                                    @foreach($jobOffres as $joboffer)
+                                        <option value="{{ $joboffer->company->domaine }}">{{ $joboffer->company->domaine }} </option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <!--  Select job items End-->
-                            <!-- select-Categories start -->
-                            <div class="select-Categories pt-80 pb-50">
-                                <div class="small-section-tittle2">
-                                    <h4>Job Type</h4>
-                                </div>
-                                <label class="container">Full Time
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Part Time
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Remote
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Freelance
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <!-- select-Categories End -->
                         </div>
                         <!-- single two -->
                         <div class="single-listing">
-                           <div class="small-section-tittle2">
-                                 <h4>Job Location</h4>
-                           </div>
-                            <!-- Select job items start -->
-                            <div class="select-job-items2">
-                                <select name="select">
-                                    <option value="">Anywhere</option>
-                                    <option value="">Category 1</option>
-                                    <option value="">Category 2</option>
-                                    <option value="">Category 3</option>
-                                    <option value="">Category 4</option>
-                                </select>
-                            </div>
-                            <!--  Select job items End-->
-                            <!-- select-Categories start -->
                             <div class="select-Categories pt-80 pb-50">
                                 <div class="small-section-tittle2">
                                     <h4>Experience</h4>
                                 </div>
-                                <label class="container">1-2 Years
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
+                                <label class="container" data-experience="1-2 Years">
+                                    <input name="filter_radio" onclick="filter('1-2')" type="radio" class="experience-checkbox">
+                                    <span class="checkmark"></span> 1-2 Years
                                 </label>
-                                <label class="container">2-3 Years
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
+                                <label class="container" data-experience="2-3 Years">
+                                    <input name="filter_radio" onclick="filter('3-4')" type="radio" class="experience-checkbox" checked>
+                                    <span class="checkmark"></span> 3-4 Years
                                 </label>
-                                <label class="container">3-6 Years
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
+                                <label class="container" data-experience="3-6 Years">
+                                    <input name="filter_radio" onclick="filter('5')" type="radio" class="experience-checkbox">
+                                    <span class="checkmark"></span> 5 Years
                                 </label>
-                                <label class="container">6-more..
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
+                                <label class="container" data-experience="6-more..">
+                                    <input name="filter_radio" onclick="filter('6')" type="radio" class="experience-checkbox">
+                                    <span class="checkmark"></span> 6-more..
                                 </label>
                             </div>
-                            <!-- select-Categories End -->
+                           
                         </div>
+                        
                         <!-- single three -->
-                        <div class="single-listing">
-                            <!-- select-Categories start -->
-                            <div class="select-Categories pb-50">
-                                <div class="small-section-tittle2">
-                                    <h4>Posted Within</h4>
-                                </div>
-                                <label class="container">Any
-                                    <input type="checkbox" >
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Today
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 2 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 3 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 5 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Last 10 days
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <!-- select-Categories End -->
-                        </div>
                         <div class="single-listing">
                             <!-- Range Slider Start -->
                             <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
@@ -195,47 +123,45 @@
                                     <div class="count-job mb-35">
                                         <span>39, 782 Jobs found</span>
                                         <!-- Select job items start -->
-                                        <div class="select-job-items">
-                                            <span>Sort by</span>
-                                            <select name="select">
-                                                <option value="">None</option>
-                                                <option value="">job list</option>
-                                                <option value="">job list</option>
-                                                <option value="">job list</option>
-                                            </select>
-                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="search">Search by location</label>
+                                            <input oninput="filterJobItems()" type="text" class="form-control" id="search" name="search" placeholder="Search by location...">
+                                        </div>                                      
                                         <!--  Select job items End-->
                                     </div>
                                 </div>
                             </div>
                             <!-- Count of Job list End -->
                             <!-- single-job-content -->
-                            
-                            @foreach($jobOffres as $jobOffre)
-                            
-                            <div class="single-job-items mb-30">
-                                <div class="job-items">
-                                    <div class="company-img">
-                                        <a href="#"><img width="40" src="{{ $jobOffre->getFirstMediaUrl('media/offres') }}" alt=""></a>
+                            <div id="allOffersJob">
+                                @foreach($jobOffres as $jobOffre)
+                                <div class="single-job-items mb-30" data-experience="{{ $jobOffre->n_experiences }}">
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="#"><img width="40" src="{{ $jobOffre->getFirstMediaUrl('media/offres') }}" alt=""></a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                                <h4>{{$jobOffre->title}} </h4>
+                                            </a>
+                                            <ul>
+                                            
+                                                <li>{{ optional($jobOffre->company)->domaine }}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{ optional($jobOffre->company)->location}}</li>
+                                                <li> ${{$jobOffre->salary}} </li>
+                                                <li> experience : {{$jobOffre->n_experiences}}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="job-tittle job-tittle2">
-                                        <a href="#">
-                                            <h4>{{$jobOffre->title}} </h4>
-                                        </a>
-                                        <ul>
-                                           
-                                            <li>{{ optional($jobOffre->company)->domaine }}</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>{{ optional($jobOffre->company)->location}}</li>
-                                            <li> ${{$jobOffre->salary}} </li>
-                                        </ul>
+                                    <div class="items-link items-link2 f-right">
+                                        <a href="{{ route('jobDetails', $jobOffre->id) }}">details</a>
+                                        <span>{{$jobOffre->company->founded_date}}</span>
                                     </div>
+                                </div>  
                                 </div>
-                                <div class="items-link items-link2 f-right">
-                                    <a href="job_details.html">Full Time</a>
-                                    <span>{{$jobOffre->company->founded_date}}</span>
-                                </div>
-                            </div>  
-                            @endforeach                          
+                                @endforeach
+                            </div>                          
                         </div>
                         
                          <!-- single-job-content end-->
@@ -266,6 +192,64 @@
         </div>
     </div>
     <!--Pagination End  -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('search');
+            var jobItems = document.querySelectorAll('.single-job-items');
+    
+            searchInput.addEventListener('input', function() {
+                var searchValue = searchInput.value.toLowerCase();
+    
+                jobItems.forEach(function(jobItem) {
+                    var locationText = jobItem.querySelector('.job-tittle ul li:nth-child(2)').textContent.toLowerCase();
+                    if (locationText.includes(searchValue)) {
+                        jobItem.style.display = 'block';
+                    } else {
+                        jobItem.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+<script>
+   function filter(data){
+    var xhttp = new XMLHttpRequest();
+    var url = "/FiltreProduct/"+data;
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(xhttp.responseText);
+            document.getElementById("allOffersJob").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("GET",url, true);
+        xhttp.send();
+   }
+</script>
+
+<script>
+    function search() {
+        var selectedDomaine = document.getElementById('domaineSelect').value;
+        var xhttp = new XMLHttpRequest();
+        var url = "/getJobOffers/" + selectedDomaine;
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("allOffersJob").innerHTML = xhttp.responseText;
+            }
+        };
+
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+</script>
+
+
+
+
+
+
     
 </main>
 

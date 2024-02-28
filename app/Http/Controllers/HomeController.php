@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobOffre;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $lastjoboffers = JobOffre::latest()->take(4)->get();
+        return view('welcome', ['lastjoboffers' => $lastjoboffers]);
     }
 }

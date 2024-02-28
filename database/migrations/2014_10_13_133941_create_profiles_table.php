@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('headline')->nullable();
             $table->string('location')->nullable();
-            $table->foreignId('education_id')->constrained('educations')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('experience_id')->constrained('experiences')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('industry_id')->constrained('industry')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreignId('education_id')->nullable()->constrained('educations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('experience_id')->nullable()->constrained('experiences')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('industry_id')->nullable()->constrained('industry')->onDelete('cascade')->onUpdate('cascade');
+
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();

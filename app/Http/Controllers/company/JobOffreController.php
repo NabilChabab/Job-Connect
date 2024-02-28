@@ -5,6 +5,7 @@ namespace App\Http\Controllers\company;
 use App\Http\Controllers\Controller;
 use App\Models\JobOffre;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class JobOffreController extends Controller
         // $company = Auth::user()->representative->company; ['company' => $company]
         $jobOffres = JobOffre::all();
         return view('job_offres.index',compact('jobOffres'));
-        
+
     }
 
     /**
@@ -49,7 +50,7 @@ class JobOffreController extends Controller
             // 'companie_id'=>$id,
         ]);
 
-        
+
         $data['companie_id'] = $id;
         $jobOffre=JobOffre::create($data);
         $skills = $request->input('skills');
@@ -93,10 +94,10 @@ class JobOffreController extends Controller
             'salary' => "required",
             'n_experiences' => "required",
             'content' => "required",
-            
+
         ]);
 
-        
+
         $data['companie_id'] = $id;
         $jobOffre->update($data);
         $skills = $request->input('skills');
@@ -115,6 +116,33 @@ class JobOffreController extends Controller
     {
         //
         $jobOffre->delete();
-        return redirect(route("jobOffre"))->with('success', "jobOffre successfully deleted"); 
+        return redirect(route("jobOffre"))->with('success', "jobOffre successfully deleted");
     }
+
+
+    public function applyed_offres(){
+        $jobOffres = JobOffre::with('users')->get();
+        return view('company.applied_offres' , compact('jobOffres'));
+    }
+
+    public function updateStatus(Request $request, $user, $jobOffer)
+    {
+      // Validate the request data
+      $request->validate([
+        'status' => 'required|in:pending,accepted,refused',
+        'comment' => 'nullable|string',
+      ]);
+
+      // Update the status and comment in the pivot table
+      $user = User::findOrFail($user);
+      $jobOffer = JobOffre::findOrFail($jobOffer);
+      $jobOffer->users()->updateExistingPivot($user->id, [
+        'status' => $request->status,
+        'comment' => $request->comment,
+      ]);
+
+      // Redirect back with a success message (consider adding flash messages)
+      return redirect()->back()->with('status', 'Status and comment updated successfully.');
+    }
+
 }
