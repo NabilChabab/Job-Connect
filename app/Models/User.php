@@ -60,6 +60,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasOne(Representative::class);
     }
 
+    public function joboffers()
+    {
+        return $this->belongsToMany(JobOffre::class);
+    }
+    
     public function profile()
     {
         return $this->hasOne(Profiles::class)->withDefault(); // Eager load profile with default

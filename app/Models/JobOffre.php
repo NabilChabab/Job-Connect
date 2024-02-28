@@ -17,6 +17,11 @@ class JobOffre extends Model implements HasMedia
     {
         return $this->belongsToMany(Skill::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('status');
+    }
     use HasFactory,InteractsWithMedia;
     protected $fillable = [
         'title',
