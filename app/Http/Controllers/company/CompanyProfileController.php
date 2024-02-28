@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyProfileController extends Controller
 {
@@ -13,7 +15,8 @@ class CompanyProfileController extends Controller
      */
     public function index()
     {
-        return view('company.profile');
+        $company = Auth::user()->representative->company;
+        return view('company.profile',['company' => $company]);
     }
 
     /**
@@ -51,10 +54,23 @@ class CompanyProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id, Request $request)
     {
-        //
+        $company = Company::findOrFail($id);
+        $data = $request->validate([
+            'company_name' => "required",
+            'company_email' => "required",
+            'description' => "required",
+        ]);
+        $company->update($data);
+
+        if ($request->hasFile('image')) {
+            $company->addMediaFromRequest('image')->toMediaCollection('media/companies', 'media_companies');
+        }
+    
+        return redirect(route('companyprofile.index'));
     }
+    
 
     /**
      * Remove the specified resource from storage.

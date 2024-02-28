@@ -57,7 +57,7 @@ class JobOffreController extends Controller
         if ($request->hasFile('image')) {
             $jobOffre->addMediaFromRequest('image')->toMediaCollection('media/offres','media_offres');
         }
-        return redirect()->route('job_offres.index');
+        return redirect()->route('jobsearch.index');
     }
 
     /**

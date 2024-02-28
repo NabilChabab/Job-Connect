@@ -71,22 +71,24 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Company $company, Request $request)
+    public function update(string $id, Request $request)
     {
+        $company  = Company::findOrFail($id);
         //
         $data = $request->validate([
-            'name' => "required",
-            'description' => "required",
-            'domaine' => "required",
-            'location' => "required",
-            'start_date' => "required",
+            // 'name' => "required",
+            // 'description' => "required",
+            // 'domaine' => "required",
+            // 'location' => "required",
+            // 'start_date' => "required",
         ]);
 
+        //dd($request);
         $company->update($data);
         if ($request->hasFile('image')) {
             $company->addMediaFromRequest('image')->toMediaCollection('media/companies','media_companies');
         }
-        return redirect(route("company"))->with('success', "company successfully updated");
+        return redirect(route("companyprofile"))->with('success', "company successfully updated");
     }
 
     /**

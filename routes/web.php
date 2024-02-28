@@ -67,6 +67,7 @@ Route::prefix('admin')->group(function () {
 Route::prefix('company')->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
+    // Route::resource('company',CompanyController::class);
     Route::resource('job_offres', JobOffreController::class);
 });
 

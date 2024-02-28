@@ -13,6 +13,6 @@ class SkillsSeeder extends Seeder
      */
     public function run(): void
     {
-        Skills::factory(15)->create();
+        Skills::factory(20)->create();
     }
 }

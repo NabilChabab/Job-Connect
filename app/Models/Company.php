@@ -16,9 +16,9 @@ class Company extends Model implements HasMedia
         return $this->hasOne(Representative::class);
     }
 
-    public function jobOffre()
+    public function jobOffres()
     {
-        return $this->hasMany(JobOffre::class);
+        return $this->hasMany(JobOffre::class , 'companie_id');
     }
     public function post()
     {
