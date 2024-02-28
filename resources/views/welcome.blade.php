@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-xl-8">
                             <!-- form -->
-                            
+
                             <form action="#" class="search-box d-flex align-items-center ">
                                 <div class="input-form">
                                     <input type="text" placeholder="Job Title or keyword">
@@ -37,12 +37,12 @@
                                 </div>
                                 <div class="search-form">
                                     <a href="{{route('jobsearch.index')}}">Find job</a>
-                                </div>	
-                            </form>	
-                         
+                                </div>
+                            </form>
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -416,7 +416,23 @@
             </div>
         </div>
     </div>
-   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+    @if (session('status'))
+    <script>
+        setTimeout(function() {
+            Swal.fire({
+                title: 'Success',
+                text: '{{ session('status') }}',
+                icon: 'success',
+                confirmButtonClass: 'btn btn-success',
+                confirmButtonText: 'Cancel',
+                confirmButtonColor: 'rgb(102, 102, 245)',
+            });
+        }, {{ session('delay', 0) }});
+    </script>
+    @endif
 
 </main>
 @endsection

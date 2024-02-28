@@ -58,7 +58,7 @@
         <script src="{{asset('assets/js2/owl.carousel.min.js')}}"></script>
         <script src="{{asset('assets/js2/slick.min.js')}}"></script>
         <script src="{{asset('assets/js2/price_rangs.js')}}"></script>
-        
+
 		<!-- One Page, Animated-HeadLin -->
         <script src="{{asset('assets/js2/wow.min.js')}}"></script>
 		<script src="{{asset('assets/js2/animated.headline.js')}}"></script>
@@ -68,15 +68,15 @@
         <script src="{{asset('assets/js2/jquery.scrollUp.min.js')}}"></script>
         <script src="{{asset('assets/js2/jquery.nice-select.min.js')}}"></script>
 		<script src="{{asset('assets/js2/jquery.sticky.js')}}"></script>
-        
+
         <!-- contact js -->
         <script src="{{asset('assets/js2/contact.js')}}"></script>
         <script src="{{asset('assets/js2/jquery.form.js')}}"></script>
         <script src="{{asset('assets/js2/jquery.validate.min.js')}}"></script>
         <script src="{{asset('assets/js2/mail-script.js')}}"></script>
         <script src="{{asset('assets/js2/jquery.ajaxchimp.min.js')}}"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
+
+		<!-- Jquery Plugins, main Jquery -->
         <script src="{{asset('assets/js2/plugins.js')}}"></script>
         <script src="{{asset('assets/js2/main.js')}}"></script>
     <!-- Scripts -->
@@ -84,77 +84,82 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mx-auto"> <!-- Change me-auto to mx-auto -->
-                        <!-- Add your additional nav links here -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('jobsearch.index')}}">Find a Job</a>
-                        </li>
-                    </ul>
-        
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-
-
-                                <li class="nav-item">
-
-
-                            @if (Route::has('getStarted'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('getStarted') }}">{{ __('Register') }}</a>
-
-                                </li>
-
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+        <header>
+            <!-- Header Start -->
+            <div class="header-area header-transparrent">
+                <div class="headder-top header-sticky">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-2">
+                                <!-- Logo -->
+                                <div class="logo">
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></a>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                                <div class="menu-wrapper">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu">
+                                        <nav class="d-none d-lg-block">
+                                            <ul id="navigation">
+                                                <li><a href="{{route('home')}}">Home</a></li>
+                                                <li><a href="{{route('jobsearch.index')}}">Find a Job</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="#">Pages</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="single-blog.html">Blog Details</a></li>
+                                                        <li><a href="elements.html">Elements</a></li>
+                                                        <li><a href="job_details.html">Job Details</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!-- Header-btn -->
+                                            <div class="header-btn d-none f-right d-lg-block">
+                                                @guest
+                                                    @if (Route::has('login'))
+
+                                                    <a href="{{route('getStarted')}}" class="btn head-btn1">Register</a>
+                                                    <a href="{{route('login')}}" class="btn head-btn2">Login</a>
+
+                                                    @endif
+                                                @else
+                                                <div class="d-flex">
+                                                    <a href="{{ route('profile.index') }}">
+                                                        @if(Auth::user()->hasMedia('media/users'))
+                                                            <img src="{{ Auth::user()->getFirstMediaUrl('media/users') }}" alt="" style="width: 40px;height:40px;border-radius:50%;margin-right:10px;margin-bottom:15px;">
+                                                        @else
+                                                            <img src="{{ asset('assets/img/My profile character, 신민정.jfif') }}" alt="" style="width: 40px;height:40px;border-radius:50%;margin-right:10px;margin-bottom:15px;">
+                                                        @endif
+                                                    </a>
+                                                <form action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button class="btn" type="submit" style="background-color: transparent;box-shadow:none;border:none">Logout</button>
+                                                </form>
+                                                </div>
+                                                @endguest
+                                            </div>
+
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+            <!-- Header End -->
+        </header>
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    
+
 </body>
 </html>

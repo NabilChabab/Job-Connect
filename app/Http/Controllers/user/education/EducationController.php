@@ -30,36 +30,38 @@ class EducationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'degree' => 'required',
-            'university'=> 'required',
-            'description'=> 'required|string',
-            'start_date'=> 'required|date',
-            'end_date'=> 'required|date',
-        ]);
+{
+    $request->validate([
+        'degree' => 'required',
+        'university'=> 'required',
+        'description'=> 'required|string',
+        'start_date'=> 'required|date',
+        'end_date'=> 'required|date',
+    ]);
 
-        $user = Auth::user();
+    // Get the authenticated user
+    $user = Auth::user();
 
-        $education = new Educations([
-            'degree' => $request->degree,
-            'university' => $request->university,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-        ]);
+    // Create a new education instance
+    $education = new Educations([
+        'degree' => $request->degree,
+        'university' => $request->university,
+        'description' => $request->description,
+        'start_date' => $request->start_date,
+        'end_date' => $request->end_date,
+    ]);
 
-        // Save the education
-        $education->save();
+    // Save the education
+    $education->save();
 
-        // Associate the education with the user's profile
-        $user->profile->education()->associate($education);
+    // Attach the education to the user's profile
+    $user->profile->education_id = $education->id;
+    $user->profile->save();
 
-        // Save the profile
-        $user->profile->save();
+    return redirect()->route('profile.index')->with('status' , 'Education added successfully');
+}
 
-        return redirect()->route('profile.index')->with('status' , 'Education added successfully');
-    }
+
 
 
     /**
