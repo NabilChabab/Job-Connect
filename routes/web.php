@@ -13,9 +13,10 @@ use App\Http\Controllers\company\JobOffreController;
 use App\Http\Controllers\user\FindJobController;
 
 use App\Http\Controllers\admin\IndustryController;
+use App\Http\Controllers\company\ApplicationController;
 use App\Http\Controllers\user\education\EducationController;
 use App\Http\Controllers\user\experience\ExperienceController;
-
+use App\Http\Controllers\user\JobDetailsController;
 use App\Http\Controllers\user\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,7 @@ Route::prefix('user')->group(function(){
 
     Route::resource('education',EducationController::class);
     Route::resource('experience',ExperienceController::class);
-
+    Route::get('/jobDetails/{id}', [JobDetailsController::class,'index'])->name('jobDetails');
 
 
 });
@@ -68,6 +69,8 @@ Route::prefix('company')->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
     Route::resource('job_offres', JobOffreController::class);
+    Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
+    
 });
 
 // Route::prefix('jobOffre')->group(function () {
@@ -80,5 +83,5 @@ Route::prefix('company')->group(function () {
 //company
 // Route::resource('company',CompanyController::class);
 
-
+Route::get('/FiltreProduct/{years}',[ApplicationController::class, 'filtrProduct']);
 
