@@ -73,6 +73,10 @@ Route::prefix('company')->middleware(['auth', 'company'])->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
     Route::resource('job_offres', JobOffreController::class);
+    Route::get('applyed_offres', [JobOffreController::class , 'applyed_offres'])->name('applyed_offres');
+    Route::put('/updateStatus/{user}/{jobOffer}', [JobOffreController::class, 'updateStatus'])->name('updateStatus');
+
+
 
 });
 

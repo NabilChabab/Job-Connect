@@ -18,8 +18,8 @@ class ProfileController extends Controller
      // Check if profile exists, otherwise default to an empty array
      $user = Auth::user(); // Get the authenticated user
 
-     $educations = $user->profile->education->get();
-     $experiences = $user->profile->experience->get();
+     $educations = $user->profile->education()->get();
+     $experiences = $user->profile->experience()->get();
      $skills = Skill::all();
      $user_skills = $user->profile->skills->all();
     return view('users.profile',compact('educations' , 'experiences' , 'skills' , 'user_skills'));
