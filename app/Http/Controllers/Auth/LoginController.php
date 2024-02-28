@@ -50,7 +50,7 @@ class LoginController extends Controller
         if ($roleId == 1) {
             return redirect('/admin/dashboard');
         } elseif ($roleId == 2) {
-            return redirect('/user/profile');
+            return redirect('/home')->with('status' , 'Welcome Back Lets find a Job');
         } elseif ($roleId == 3) {
             return redirect('/user/profile');
         }elseif($roleId == 4){

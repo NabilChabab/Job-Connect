@@ -46,38 +46,36 @@ Route::resource('companyRegister',CompanyRegisterController::class);
 Route::get('/getStarted', [App\Http\Controllers\GetStartedController::class,'index'])->name('getStarted');
 
 //users
-Route::prefix('user')->group(function(){
+Route::prefix('user')->middleware('auth')->group(function(){
     Route::resource('profile',ProfileController::class);
-
     Route::resource('jobsearch',FindJobController::class);
-
     Route::resource('education',EducationController::class);
     Route::resource('experience',ExperienceController::class);
-<<<<<<< HEAD
     Route::resource('skills',SkillsController::class);
 
-=======
     Route::get('/jobDetails/{id}', [JobDetailsController::class,'index'])->name('jobDetails');
->>>>>>> 1aa66014ef237577b0185e8d09e6b64e4a591316
+
 
 
 });
 
-//admin
-Route::prefix('admin')->group(function () {
+// Admin Routes
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('dashboard', AdminController::class);
     Route::resource('users', UserController::class);
     Route::resource('companies', CompanyController::class);
-    Route::resource('offres' , OffreController::class);
+    Route::resource('offres', OffreController::class);
 });
 
-Route::prefix('company')->group(function () {
+// Company Routes
+Route::prefix('company')->middleware(['auth', 'company'])->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
     Route::resource('job_offres', JobOffreController::class);
     Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
-    
+
 });
+
 
 // Route::prefix('jobOffre')->group(function () {
 //     Route::resource('home', CompanyCompanyController::class);
