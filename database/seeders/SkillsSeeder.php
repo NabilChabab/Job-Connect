@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Skill;
-use App\Models\Skills;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class SkillsSeeder extends Seeder

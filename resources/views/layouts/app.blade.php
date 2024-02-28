@@ -128,7 +128,13 @@
                                                     @endif
                                                 @else
                                                 <div class="d-flex">
-                                                    <a href="{{route('profile.index')}}"><img src="{{ Auth::user()->getFirstMediaUrl('media/users') }}" alt="" style="width: 40px;height:40px;border-radius:50%;margin-right:10px;margin-bottom:15px;"></a>
+                                                    <a href="{{ route('profile.index') }}">
+                                                        @if(Auth::user()->hasMedia('media/users'))
+                                                            <img src="{{ Auth::user()->getFirstMediaUrl('media/users') }}" alt="" style="width: 40px;height:40px;border-radius:50%;margin-right:10px;margin-bottom:15px;">
+                                                        @else
+                                                            <img src="{{ asset('assets/img/My profile character, 신민정.jfif') }}" alt="" style="width: 40px;height:40px;border-radius:50%;margin-right:10px;margin-bottom:15px;">
+                                                        @endif
+                                                    </a>
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
                                                     <button class="btn" type="submit" style="background-color: transparent;box-shadow:none;border:none">Logout</button>

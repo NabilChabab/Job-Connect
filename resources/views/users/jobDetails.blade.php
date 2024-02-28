@@ -20,9 +20,9 @@
     <!-- Hero Area End -->
     <!-- job post company Start -->
     <div class="job-post-company pt-120 pb-120">
-    
-            
-        
+
+
+
         <div class="container">
             @if(session('success'))
             <div class="alert alert-success">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                       <!-- job single End -->
-                   
+
                     <div class="job-post-details">
                         <div class="post-details1 mb-50">
                             <!-- Small Section Tittle -->
@@ -101,6 +101,8 @@
                           <li>Job nature : <span>{{$joboffer->company->domaine}}</span></li>
                           <li>Salary :  <span>$ {{$joboffer->salary}} monthly</span></li>
                       </ul>
+
+
                       <div class="apply-btn2">
                         <form action="{{ route('apply', $joboffer->id) }}" method="post">
                             @csrf

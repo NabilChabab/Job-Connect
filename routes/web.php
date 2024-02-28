@@ -55,6 +55,7 @@ Route::prefix('user')->middleware('auth')->group(function(){
 
     Route::get('/jobDetails/{id}', [JobDetailsController::class,'index'])->name('jobDetails');
 
+    Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
 
 
 });
@@ -72,7 +73,6 @@ Route::prefix('company')->middleware(['auth', 'company'])->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
     Route::resource('job_offres', JobOffreController::class);
-    Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
 
 });
 

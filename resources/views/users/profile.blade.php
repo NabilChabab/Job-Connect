@@ -305,7 +305,11 @@
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="{{Auth::user()->getFirstMediaUrl('media/users')}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                @if(Auth::user()->hasMedia('media/users'))
+                <img src="{{Auth::user()->getFirstMediaUrl('media/users')}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            @else
+                <img src="{{ asset('assets/img/My profile character, 신민정.jfif') }}" alt="" class="w-100 border-radius-lg shadow-sm">
+            @endif
             </div>
           </div>
           <div class="col-auto my-auto">
@@ -363,7 +367,11 @@
                 @method('PUT')
                 @csrf
                 <div class="cards">
-                    <img src="{{Auth::user()->getFirstMediaUrl('media/users')}}" id="image">
+                    @if(Auth::user()->hasMedia('media/users'))
+                    <img src="{{Auth::user()->getFirstMediaUrl('media/users')}}" alt="profile_image" id="image">
+                @else
+                    <img src="{{ asset('assets/img/My profile character, 신민정.jfif') }}" alt="" id="image">
+                @endif
                     <label for="input-file">Upload Profile</label>
                     <input type="file" accept="image/jpg, image/png, image/jpeg" name="profile"
                         style="background-color: transparent;" id="input-file">
