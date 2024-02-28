@@ -33,4 +33,17 @@ class ApplicationController extends Controller
         if($years=="6")  $jobOffres = JobOffre::where('n_experiences', '>', 6)->get();
         return view('users.searchJob', compact('jobOffres'));
     }
+
+    public function getJobOffers($domaine)
+    {
+        if ($domaine == 'All Domaines') {
+            $jobOffers = JobOffre::all();
+        } else {
+            $jobOffers = JobOffre::whereHas('company', function ($query) use ($domaine) {
+                $query->where('domaine', $domaine);
+            })->get();
+        }
+
+        return view('users.searchJob', compact('jobOffers'));
+    }
 }

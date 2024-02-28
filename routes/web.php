@@ -18,6 +18,7 @@ use App\Http\Controllers\user\education\EducationController;
 use App\Http\Controllers\user\experience\ExperienceController;
 use App\Http\Controllers\user\JobDetailsController;
 use App\Http\Controllers\user\ProfileController;
+use App\Models\JobOffre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $lastjoboffers = JobOffre::latest()->take(4)->get();
+    return view('welcome', ['lastjoboffers' => $lastjoboffers]);
 });
 
 Auth::routes();
@@ -53,6 +55,7 @@ Route::prefix('user')->group(function(){
     Route::resource('education',EducationController::class);
     Route::resource('experience',ExperienceController::class);
     Route::get('/jobDetails/{id}', [JobDetailsController::class,'index'])->name('jobDetails');
+    Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
 
 
 });
@@ -69,7 +72,6 @@ Route::prefix('company')->group(function () {
     Route::resource('home', CompanyCompanyController::class);
     Route::resource('companyprofile',CompanyProfileController::class);
     Route::resource('job_offres', JobOffreController::class);
-    Route::post('/apply/{id}',[ApplicationController::class, 'apply'])->name('apply');
     
 });
 
@@ -85,3 +87,4 @@ Route::prefix('company')->group(function () {
 
 Route::get('/FiltreProduct/{years}',[ApplicationController::class, 'filtrProduct']);
 
+Route::get('/getJobOffers/{domaine}', [ApplicationController::class, 'getJobOffers'])->name('getJobOffers');

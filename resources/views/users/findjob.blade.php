@@ -49,10 +49,10 @@
                            </div>
                             <!-- Select job items start -->
                             <div class="select-job-items2">
-                                <select name="select">
+                                <select name="select" id="domaineSelect" onchange="search()">
                                     <option value="">All Domaines</option>
                                     @foreach($jobOffres as $joboffer)
-                                        <option value="{{ $joboffer->company->domain }}">{{ $joboffer->domain }}</option>
+                                        <option value="{{ $joboffer->company->domaine }}">{{ $joboffer->company->domaine }} </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -228,6 +228,22 @@
    }
 </script>
 
+<script>
+    function search() {
+        var selectedDomaine = document.getElementById('domaineSelect').value;
+        var xhttp = new XMLHttpRequest();
+        var url = "/getJobOffers/" + selectedDomaine;
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("allOffersJob").innerHTML = xhttp.responseText;
+            }
+        };
+
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+</script>
 
 
 
